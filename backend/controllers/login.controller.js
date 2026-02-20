@@ -1,22 +1,39 @@
-const jwt =require("jsonwebtoken");
+// const dotenv = require("dotenv");
+// dotenv.config();
 
-const login = async(requestAnimationFrame,res)=>{
-    const {email,password}=req.body;
-    db.query("SELECT * FROM users WHERE email=?",[email], async(err,data)=>{
-        if(err) return res.status(500).json(err);
-        if(data.length===0) return res.status(404).json("User not found");
+const jwt = require("jsonwebtoken");
+const db = require('../config/db');
+const bcrypt = require('bcrypt');
 
-        const user =data[0];
-        const match = await bcrypt.compare(password,user.password);
+const login = async (req, res) => {
+  const { email, password } = req.body;
 
-        const token =jwt.sign({id:user.id},process.env.JWT_SECRET,{expiresIn:"1d}"});
-        res.json({
-            message:"Login Successfully",
-            token,
-            user
-        });
+  db.query("SELECT * FROM users WHERE email=?", [email], async (err, data) => {
 
-    })
-}
+    if (err) return res.status(500).json(err);
 
-module.exports={login}
+    if (data.length === 0)
+      return res.status(404).json({ message: "User not found" });
+
+    const user = data[0];
+
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match)
+      return res.status(400).json({ message: "Wrong password" });
+
+    const token = jwt.sign(
+      { id: user.id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    res.json({
+      message: "Login Successfully",
+      token,
+      user
+    });
+  });
+};
+
+module.exports = { login };

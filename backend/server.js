@@ -1,4 +1,9 @@
-const dotenv=require("dotenv")
+// const dotenv=require("dotenv")
+// dotenv.config();
+
+require("dotenv").config();
+
+console.log("JWT_SECRET from server:", process.env.JWT_SECRET);
 const express=require("express")
 const cors=require("cors")
 const  authRoutes =require("./routes/auth.route.js");
