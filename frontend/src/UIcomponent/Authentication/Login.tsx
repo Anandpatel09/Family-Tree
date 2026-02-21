@@ -9,9 +9,16 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ROUTES } from "@/Routers/routes";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleSinup = () => {
+    navigate(ROUTES.SIGNUP);
+  };
+
   return (
     <>
       <div className="flex justify-center items-center h-screen">
@@ -57,7 +64,7 @@ const Login = () => {
             <Button type="submit" className="w-full">
               Login
             </Button>
-            <Button variant="outline" className="w-full">
+            <Button variant="outline" className="w-full" onClick={handleSinup}>
               Sing Up
             </Button>
           </CardFooter>
