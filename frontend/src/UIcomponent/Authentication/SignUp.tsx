@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
-const SingUp =()=>{
+const SignUp =()=>{
     return(
         <>
         <div className="flex justify-center items-center min-h-screen bg-gray-300 ">
@@ -92,4 +92,4 @@ const SingUp =()=>{
         </>
     )
 }
-export default SingUp
+export default SignUp
