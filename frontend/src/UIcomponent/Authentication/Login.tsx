@@ -11,13 +11,38 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/Routers/routes";
+import { useState } from "react";
+import { loginapi, type Logindata } from "@/api";
+
+
+
 
 const Login = () => {
   const navigate = useNavigate();
 
+ const [email,setEmail]=useState<string>("");
+ const [password,setPassword]=useState<string>("");
+
   const handleSinup = () => {
     navigate(ROUTES.SIGNUP);
   };
+
+  const handleLogin=async(e: React.FormEvent<HTMLFormElement>)=>{
+     e.preventDefault(); 
+     const payload:Logindata={
+      email:email,
+      password:password
+     }
+  console.log("Payload:", payload);
+     try {
+      const result=await loginapi(payload);
+      console.log("result====",result)
+
+     }catch(err){
+
+     }
+  }
+
 
   return (
     <>
@@ -30,13 +55,14 @@ const Login = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form>
+            <form onSubmit={handleLogin}>
               <div className="flex flex-col gap-6">
                 <div className="grid gap-2">
                   <Label>Email/UserName</Label>
                   <Input
                     type="text"
                     placeholder={"Enter your email/username"}
+                    onChange={(e)=>setEmail(e.target.value)}
                     required
                   />
                 </div>
@@ -48,6 +74,7 @@ const Login = () => {
                     id=""
                     type="password"
                     placeholder={"Enter your password"}
+                    onChange={(e)=>setPassword(e.target.value)}
                     required
                   />
                 </div>
@@ -58,12 +85,13 @@ const Login = () => {
                   Forgot password?
                 </Link>
               </div>
+              <Button type="submit" className="w-full">
+              Login
+            </Button>
             </form>
           </CardContent>
           <CardFooter className="flex-col gap-2">
-            <Button type="submit" className="w-full">
-              Login
-            </Button>
+            
             <Button variant="outline" className="w-full" onClick={handleSinup}>
               Sing Up
             </Button>
