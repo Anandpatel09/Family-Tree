@@ -2,14 +2,21 @@ import Forgetpassword from "@/UIcomponent/Authentication/Forgetpassword";
 import Login from "@/UIcomponent/Authentication/Login";
 import ResetPassword from "@/UIcomponent/Authentication/Resetpassword";
 import SignUp from "@/UIcomponent/Authentication/SignUp";
+import Home from "@/UIcomponent/Dashboard/Home";
 import { Routes, Route } from "react-router-dom";
+import { ROUTES } from "./routes";
 export default function AppRouter() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/forgot-password" element={<Forgetpassword />} />
-      <Route path="/reset-password/:token" element={<ResetPassword />} />
+      {/* //Auth routes */}
+      <Route path={ROUTES.LOGIN} element={<Login />} />
+      <Route path={ROUTES.SIGNUP} element={<SignUp />} />
+      <Route path={ROUTES.FORGOT_PASSWORD} element={<Forgetpassword />} />
+      <Route path={ROUTES.RESET_PASSWORD} element={<ResetPassword />} />
+
+      {/* //Home routes  */}
+        <Route path={ROUTES.HOME} element={<Home/>}/>
+
     </Routes>
   );
 }
