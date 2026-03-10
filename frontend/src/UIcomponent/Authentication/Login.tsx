@@ -13,6 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/Routers/routes";
 import { useState } from "react";
 import { loginapi, type Logindata } from "@/api";
+import toast from "react-hot-toast";
 
 
 
@@ -27,23 +28,27 @@ const Login = () => {
     navigate(ROUTES.SIGNUP);
   };
 
+  const handleForgetPassword = () =>{
+    navigate(ROUTES.FORGOT_PASSWORD);
+  }
+
   const handleLogin=async(e: React.FormEvent<HTMLFormElement>)=>{
      e.preventDefault(); 
      const payload:Logindata={
       email:email,
       password:password
      }
-  console.log("Payload:", payload);
      try {
       const result=await loginapi(payload);
-      console.log("result====",result)
 
-     }catch(err){
+      if(result.status === 200){
+        toast.success(result?.data?.message)
+      }
 
+     }catch(err:any){
+  toast.error(err?.response?.data?.message)
      }
   }
-
-
   return (
     <>
       <div className="flex justify-center items-center h-screen">
@@ -58,7 +63,7 @@ const Login = () => {
             <form onSubmit={handleLogin}>
               <div className="flex flex-col gap-6">
                 <div className="grid gap-2">
-                  <Label>Email/UserName</Label>
+                  <Label>Email</Label>
                   <Input
                     type="text"
                     placeholder={"Enter your email/username"}
@@ -80,7 +85,8 @@ const Login = () => {
                 </div>
                 <Link
                   to="/forgot-password"
-                  className="text-sm text-blue-600 hover:underline"
+                  className="text-sm text-blue-600 hover:underline mb-4"
+                  onClick={handleForgetPassword}
                 >
                   Forgot password?
                 </Link>
