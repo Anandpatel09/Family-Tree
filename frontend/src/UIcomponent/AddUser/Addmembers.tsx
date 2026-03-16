@@ -42,7 +42,7 @@ export interface FormValues  {
 /* -------------------- COMPONENT -------------------- */
 
 const AddMembers = () => {
-  const [child, setChild] = useState(false);
+  // const [child, setChild] = useState(false);
 
   const form = useForm<FormValues>({
     defaultValues: {
@@ -100,7 +100,7 @@ if(result.status===200){
   };
 
   const handleAddChildren = () => {
-    setChild(true);
+    // setChild(true);
     append({ child_name: "", child_gender: "" });
   };
 
