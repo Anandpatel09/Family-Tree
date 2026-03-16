@@ -82,12 +82,8 @@ const AddMembers = () => {
       address: data.address,
       phone: data.phone,
       file: data.file,
-      children: [
-  {
-    child_name: data.children[0].child_name,
-    child_gender: data.children[0].child_gender,
-  }
-],}
+      children: data.children,
+}
 try{
 const result = await addUsers(payload);
 console.log("result=========",result)
