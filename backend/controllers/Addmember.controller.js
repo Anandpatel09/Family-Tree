@@ -21,6 +21,12 @@ const Addmember = async (req, res) => {
 
     /* -------- INSERT PERSON -------- */
 
+     if(!req.body.dob){
+      return res.status(400).json({
+        message:"DOB is required",
+      })
+    }
+
     const query = `
       INSERT INTO persons
       (fullName, wifename, dob, gender, father, mother, grandfather, grandmother,file, village, address, phone)
@@ -44,6 +50,7 @@ const Addmember = async (req, res) => {
 
     const personId = result.insertId;
 
+   
     /* -------- INSERT CHILDREN -------- */
 
     if (children && children.length > 0) {
