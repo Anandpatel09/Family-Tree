@@ -7,15 +7,22 @@ const Logout = () => {
 
   useEffect(() => {
       
-    // Remove stored auth data
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+   
 
-    // Optional: clear everything
-    // localStorage.clear();
+    
     toast.success("Logging out....")
     // Redirect to login page
-    navigate("/");
+    setTimeout(()=>{
+ // Remove stored auth data
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    // Optional: clear everything
+    // localStorage.clear();
+
+    // redirect
+      navigate("/");
+    },2000)
+  
 
   }, [navigate]);
 

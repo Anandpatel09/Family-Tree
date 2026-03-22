@@ -54,11 +54,11 @@ const Login = () => {
   return (
     <>
       <div className="flex justify-center items-center h-screen">
-        <Card className="w-full max-w-sm">
+        <Card className="w-full max-w-sm bg-gray-50">
           <CardHeader>
-            <CardTitle>Login</CardTitle>
+            <CardTitle></CardTitle>
             <CardDescription>
-              Please enter your email and password to login
+             
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -68,7 +68,7 @@ const Login = () => {
                   <Label>Email</Label>
                   <Input
                     type="text"
-                    placeholder={"Enter your email/username"}
+                    placeholder={"Enter your email"}
                     onChange={(e)=>setEmail(e.target.value)}
                     required
                   />
@@ -98,10 +98,11 @@ const Login = () => {
             </Button>
             </form>
           </CardContent>
-          <CardFooter className="flex-col gap-2">
-            
+          
+          <CardFooter className="flex-col gap-2">        
+             <p className="text-blue-600 mr-6">don't have account signup ?</p>  
             <Button variant="outline" className="w-full" onClick={handleSinup}>
-              Sing Up
+              Sign Up
             </Button>
           </CardFooter>
         </Card>

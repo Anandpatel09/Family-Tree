@@ -139,7 +139,7 @@ const AddMembers = () => {
   return (
     <>
       {close &&
-        <div className="min-h-screen bg-gray-100 flex justify-center p-8">
+        <div className="min-h-screen bg-gray-200 flex justify-center p-8">
           <Card className="w-[700px] shadow-md">
             <CardHeader>
               <CardTitle className="text-xl">Add Member</CardTitle>

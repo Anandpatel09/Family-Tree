@@ -6,7 +6,9 @@ import Home from "@/UIcomponent/Dashboard/Home";
 import { Routes, Route } from "react-router-dom";
 import { ROUTES } from "./routes";
 import Logout from "@/UIcomponent/Authentication/Logout";
-import Addmembers from "@/UIcomponent/AddUser/Addmembers";
+import Addmembers from "@/UIcomponent/BasicsUi/Addmembers";
+import Profile from "@/UIcomponent/BasicsUi/Profile";
+import Settings from "@/UIcomponent/BasicsUi/Settings";
 export default function AppRouter() {
   return (
     <Routes>
@@ -20,6 +22,10 @@ export default function AppRouter() {
       {/* //Home routes  */}
         <Route path={ROUTES.HOME} element={<Home/>}/>
         <Route path={ROUTES.ADD_MEMBERS} element={<Addmembers/>}/>
+
+        {/* Profile routes */}
+        <Route path={ROUTES.SETTING} element={<Settings/>}/>
+        <Route path={ROUTES.PROFILE} element={<Profile/>}/>
 
 
 

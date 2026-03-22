@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { FormValues } from "./UIcomponent/AddUser/Addmembers";
+import type { FormValues } from "./UIcomponent/BasicsUi/Addmembers";
 //signup interface
 export interface SignupResponse {
   success: boolean;
