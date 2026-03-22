@@ -8,7 +8,7 @@ build/
 # env files
 .env
 .env.local
-
+README.md
 # logs
 logs
 *.log
