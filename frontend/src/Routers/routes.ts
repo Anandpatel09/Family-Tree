@@ -1,5 +1,8 @@
 const HOME = "/home";
 const LOGIN= "/";
+const PROFILE="/profile/user"
+const SETTING="/profile/setting"
+
 
 export const ROUTES = {
   HOME,
@@ -9,5 +12,7 @@ export const ROUTES = {
   FORGOT_PASSWORD: "/forgot-password",
   RESET_PASSWORD: "/reset-password/:token",
   DASHBOARD: "/dashboard",
-  ADD_MEMBERS: "/add-members"
+  ADD_MEMBERS: "/add-members",
+  PROFILE,
+  SETTING,
 };

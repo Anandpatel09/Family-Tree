@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { LayoutDashboard, UserPlus, Search, LogOut } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { ROUTES } from "@/Routers/routes";
 
 interface SidebarProps {
   open: boolean;
@@ -33,7 +34,7 @@ const HomeSidebar = ({ open, setOpen }: SidebarProps) => {
           </NavLink>
 
           <NavLink
-            to="/add-members"
+            to={ROUTES.ADD_MEMBERS}
             onClick={() => setOpen(false)}
             className="flex items-center gap-3 p-2 rounded hover:bg-blue-500"
           >
