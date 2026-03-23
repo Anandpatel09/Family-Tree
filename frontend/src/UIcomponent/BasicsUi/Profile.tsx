@@ -6,9 +6,16 @@ import {
 } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { useEffect } from "react";
+// import type { addUsers } from "@/api";
 
 
 const ProfilePage = () => {
+
+//  useEffect(()={
+// addUsers();
+//  },[])
+
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-5xl mx-auto space-y-6">
