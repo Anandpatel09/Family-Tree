@@ -22,7 +22,7 @@ The **Family Tree Project** is a web-based application that allows users to visu
 **Frontend:**
 
 * HTML5
-* CSS3 / Tailwind CSS
+* CSS3 / Tailwind CSS /shadcn
 * JavaScript / React.js
 
 **Backend:**
@@ -32,7 +32,7 @@ The **Family Tree Project** is a web-based application that allows users to visu
 
 **Database:**
 
-* MySQL / MongoDB
+* MySQL 
 
 ---
 
@@ -65,14 +65,14 @@ cd family-tree
 #### For backend:
 
 ```
-cd server
+cd backend
 npm install
 ```
 
 #### For frontend:
 
 ```
-cd client
+cd frontend
 npm install
 ```
 
@@ -94,15 +94,15 @@ DB_URI=your_database_connection_string
 #### Start backend:
 
 ```
-cd server
-npm start
+cd backend
+node server.js /nodemon server.js
 ```
 
 #### Start frontend:
 
 ```
-cd client
-npm start
+cd frontend
+npm run dev
 ```
 
 ---
