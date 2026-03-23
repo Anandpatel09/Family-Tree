@@ -39,16 +39,26 @@ const Login = () => {
       password:password
      }
      try {
-      const result=await loginapi(payload);
+      const result = await loginapi(payload);
+      console.log("cdckmdcdscmidscidscdcm====",result)
+      if (result.status === 200) {
+        toast.success(result?.data?.message);
 
-      if(result.status === 200){
-        toast.success(result?.data?.message)
-        navigate(ROUTES.HOME)
+        // Store authentication token for ProtectedRoute
+        if (result?.data?.token) {
+          localStorage.setItem("token", result.data.token);
+        }
 
+        // Optionally store user data
+        if (result?.data?.user) {
+          localStorage.setItem("user", JSON.stringify(result.data.user));
+        }
+
+        navigate(ROUTES.HOME);
       }
 
-     }catch(err:any){
-  toast.error(err?.response?.data?.message)
+     } catch (err: any) {
+       toast.error(err?.response?.data?.message);
      }
   }
   return (

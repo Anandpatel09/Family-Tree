@@ -1,30 +1,55 @@
 import axios from "axios";
 import type { FormValues } from "./UIcomponent/BasicsUi/Addmembers";
-//signup interface
+
 export interface SignupResponse {
   success: boolean;
   message: string;
+  token: string;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+  };
 }
 
-//login interface
 export interface Logindata {
   email: string;
   password: string;
 }
 
-//forget password
-export interface Forgetpasswordinterface{
-email:string;
+interface LoginResponse {
+  token: string;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+  };
+  message:string;
+
 }
 
-interface resetpasswordpayload{
-  password:string;
-  confirmPassword:string;
+export interface Forgetpasswordinterface {
+  email: string;
 }
 
+interface resetpasswordpayload {
+  password: string;
+  confirmPassword: string;
+}
 
 const BaseUrl = axios.create({
   baseURL: "http://localhost:5000",
+});
+
+// ✅ INTERCEPTOR
+BaseUrl.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
 });
 
 //signup
@@ -34,8 +59,9 @@ export const signupapi = (formData: FormData) => {
 
 //login
 export const loginapi = (payload: Logindata) => {
-  return BaseUrl.post("/auth/login", payload);
+  return BaseUrl.post<LoginResponse>("/auth/login", payload);
 };
+
 
 ///forget password
 export const forgetpasswordapi=(payload:Forgetpasswordinterface)=>{
@@ -50,9 +76,60 @@ export const resetpasswordapi = (
   return BaseUrl.post(`/auth/reset-password/${token}`, payload);
 };
 
+//profile
+export const getProfileApi = () => {
+  return BaseUrl.get("/auth/profile");
+};
 
 //add members
-export const addUsers=(payload : FormValues)=>{
-  return BaseUrl.post("/auth/add-members",payload)
-}
+export const addUsers = (payload: FormValues) => {
+  return BaseUrl.post("/members/add", payload);
+};
+
+// import axios from "axios";
+// import type { FormValues } from "./UIcomponent/BasicsUi/Addmembers";
+// //signup interface
+// export interface SignupResponse {
+//   success: boolean;
+//   message: string;
+// }
+
+// //login interface
+// export interface Logindata {
+//   email: string;
+//   password: string;
+// }
+
+
+
+// interface resetpasswordpayload{
+//   password:string;
+//   confirmPassword:string;
+// }
+
+
+// const BaseUrl = axios.create({
+//   baseURL: "http://localhost:5000",
+// });
+
+// //signup
+// export const signupapi = (formData: FormData) => {
+//   return BaseUrl.post<SignupResponse>("/auth/signup", formData);
+// };
+
+// //login
+// export const loginapi = (payload: Logindata) => {
+//   return BaseUrl.post("/auth/login", payload);
+// };
+
+
+
+
+
+
+// //add members
+// export const addUsers=(payload : FormValues)=>{
+//   return BaseUrl.post("/auth/add-members",payload)
+// }
+
 
