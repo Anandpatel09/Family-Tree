@@ -8,20 +8,20 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from '@/components/ui/button';
-import { string } from 'zod';
+
 
 interface EditProf {
     editProfile: boolean,
     setEditProfileUser: (value: boolean) => void;
 }
 
-interface EditData {
-    full_name: string,
-    email: string,
-    phone: string,
-    dob: string,
-    gender: string,
-}
+// interface EditData {
+//     full_name: string,
+//     email: string,
+//     phone: string,
+//     dob: string,
+//     gender: string,
+// }
 const EditProfile = ({ editProfile, setEditProfileUser }: EditProf) => {
 
     const [formData, setFormData] = useState({
