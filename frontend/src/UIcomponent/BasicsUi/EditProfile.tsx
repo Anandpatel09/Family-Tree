@@ -10,15 +10,18 @@ import { Input } from "@/components/ui/input";
 import { Button } from '@/components/ui/button';
 import { getProfileApi, updateUser } from '@/api';
 import toast from 'react-hot-toast';
+import type { User } from './Profile';
 
 
 interface EditProf {
     editProfile: boolean,
     setEditProfileUser: (value: boolean) => void;
     id:number;
+    setProfileUser: React.Dispatch<React.SetStateAction<User|null>>;
+
 }
 
-const EditProfile = ({ editProfile, setEditProfileUser,id }: EditProf) => {
+const EditProfile = ({ editProfile, setEditProfileUser,id,setProfileUser }: EditProf) => {
 
     const [formData, setFormData] = useState({
         full_name: "",
@@ -42,7 +45,8 @@ const handleChange =(e:React.ChangeEvent<HTMLInputElement>)=>{
         try{
             const result=await updateUser(id, formData);
         toast.success(`${result?.data?.message}`)
-        await getProfileApi();
+        const updatedProfile = await getProfileApi();
+        setProfileUser(updatedProfile.data);
         setEditProfileUser(false);
         }catch(err){
             toast.error("can not update the profile");
