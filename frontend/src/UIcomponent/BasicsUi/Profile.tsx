@@ -11,7 +11,7 @@ import { getProfileApi } from "@/api";
 import EditProfile from "./EditProfile";
 
 
-interface User {
+export interface User {
   id: number;
   full_name: string;
   email: string;
@@ -67,7 +67,6 @@ const ProfilePage = () => {
             </div>
             <Button
               onClick={() => setEditProfileUser(true)}
-              disabled={!profileUser}
               className="ml-auto rounded-lg px-5"
             >
               Edit Profile
@@ -103,6 +102,7 @@ const ProfilePage = () => {
     editProfile={editProfile}
     setEditProfileUser={setEditProfileUser}
     id={profileUser.id}
+    setProfileUser={setProfileUser} 
   />
 )}
 
