@@ -3,36 +3,39 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { useState } from "react";
+import { updatePassword } from "@/api";
+import toast from "react-hot-toast";
 
 const SettingsPage = () => {
+const [newPassword,setNewPassword]=useState<string>("")
+const [currentPassword,setCurrentPassword]=useState<string>("")
+const [confirmPassword,setconfirmPassword]=useState<string>("")
+
+const handlePassword= async()=>{
+  const payload={
+    currentPassword:currentPassword,
+     newPassword:newPassword
+  }
+  let result;
+  try {
+       result=await updatePassword(payload)
+      toast.success(`${result?.data?.message}`)
+  } catch (error: any) {
+  const message =
+    error?.response?.data?.message ||
+    error?.message ||
+    "Something went wrong";
+
+  toast.error(message);
+}
+
+}  
   return (
     <div className="min-h-screen bg-gray-200 p-6">
       <div className="max-w-4xl mx-auto space-y-6">
 
-        {/* 🔹 Account Settings */}
-        <Card className="p-6bg-white">
-          <CardContent className="space-y-4">
-            <h2 className="text-xl font-semibold text-gray-800">
-              Account Settings
-            </h2>
-
-            <div className="grid gap-4">
-              <div>
-                <Label>Name</Label>
-                <Input placeholder="Enter your name" />
-              </div>
-
-              <div>
-                <Label>Email</Label>
-                <Input type="email" placeholder="Enter your email" />
-              </div>
-
-              <Button className="w-fit rounded-lg">
-                Save Changes
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+       
 
         {/* 🔹 Password Settings */}
         <Card className="p-6 bg-white">
@@ -41,11 +44,14 @@ const SettingsPage = () => {
               Change Password
             </h2>
 
-            <Input type="password" placeholder="Current Password" />
-            <Input type="password" placeholder="New Password" />
-            <Input type="password" placeholder="Confirm Password" />
+            <Input type="password" placeholder="Current Password" value={currentPassword}  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>setCurrentPassword(e.target.value)}/>
 
-            <Button className="w-fit rounded-lg">
+            <Input type="password" placeholder="New Password" value={newPassword} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setNewPassword(e.target.value)} />
+
+            <Input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setconfirmPassword(e.target.value)}/>
+
+            <Button className="w-fit rounded-lg"
+            onClick={handlePassword}>
               Update Password
             </Button>
           </CardContent>
