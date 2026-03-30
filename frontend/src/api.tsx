@@ -28,6 +28,11 @@ interface LoginResponse {
 
 }
 
+interface ChangePass{
+   currentPassword:string,
+     newPassword:string
+}
+
 export interface Forgetpasswordinterface {
   email: string;
 }
@@ -99,3 +104,13 @@ export const updateUser = (id: number, payload: any) => {
     },
   });
 };
+
+// update password 
+export const updatePassword =(payload:ChangePass)=>{
+  const token=localStorage.getItem("token")
+  return BaseUrl.put('/auth/update-password',payload,{
+    headers:{
+      Authorization:`Bearer ${token}`,
+    }
+  })
+}
