@@ -93,7 +93,7 @@ export const getProfileApi = () => {
 
 //add members
 export const addUsers = (payload: FormValues) => {
-  return BaseUrl.post("/members/add", payload);
+  return BaseUrl.post("/auth/add-members", payload);
 };
 
 // update profile
@@ -109,6 +109,18 @@ export const updateUser = (id: number, payload: any) => {
 export const updatePassword =(payload:ChangePass)=>{
   const token=localStorage.getItem("token")
   return BaseUrl.put('/auth/update-password',payload,{
+    headers:{
+      Authorization:`Bearer ${token}`,
+    }
+  })
+}
+
+
+//get family tree data 
+
+export const familyData=()=>{
+  const token =localStorage.getItem("token")
+  return BaseUrl.get('/auth/dasboard',{
     headers:{
       Authorization:`Bearer ${token}`,
     }
