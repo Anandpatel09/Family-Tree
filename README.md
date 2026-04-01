@@ -107,7 +107,7 @@ npm run dev
 
 ---
 
-## 🧪 Usage
+## Usage
 
 1. Open the application in your browser
 2. Add family members
