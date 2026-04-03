@@ -1,6 +1,6 @@
 #  Family Tree Project
 
-## 📌 Overview
+##  Overview
 
 The **Family Tree Project** is a web-based application that allows users to visualize, manage, and explore their family relationships in an interactive and structured way. It helps in maintaining genealogical data and understanding family hierarchies easily.
 
