@@ -51,7 +51,7 @@ family-tree/
 
 ---
 
-## ⚙️ Installation & Setup
+##  Installation & Setup
 
 ### 1️⃣ Clone the repository
 
