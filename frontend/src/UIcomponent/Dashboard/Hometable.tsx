@@ -1,4 +1,4 @@
-import { membersDetail } from "@/api";
+import { deleteMember, membersDetail } from "@/api";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -47,6 +47,23 @@ const Hometable = () => {
     getmembersData();
   }, []);
 
+  // delete perticular user
+  const handleDelete = async (id: number) => {
+    try {
+      // confirm before delete
+      const confirmDelete = window.confirm("Are you sure you want to delete this member?");
+      if (!confirmDelete) return;
+
+      await deleteMember(id);
+
+      // ✅ Update UI instantly (important)
+      setMembers((prev) => prev.filter((member) => member.id !== id));
+
+      toast.success("Member deleted successfully");
+    } catch (error) {
+      toast.error("Failed to delete member");
+    }
+  };
 
   // ✅ Pagination logic
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -109,10 +126,12 @@ const Hometable = () => {
                     <Eye />
                     View
                   </Button>
-                  <Button  variant="outline" className="mx-2" 
-                  // onClick={""}
+                  <Button
+                    variant="outline"
+                    className="text-red-500 border-red-200 hover:bg-red-50"
+                    onClick={() => handleDelete(item.id)}
                   >
-                    <Trash2/>
+                    <Trash2 size={16} />
                   </Button>
 
                 </TableCell>
