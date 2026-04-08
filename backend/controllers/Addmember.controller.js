@@ -15,22 +15,24 @@ const Addmember = async (req, res) => {
       village = null,
       address = null,
       phone = null,
-      file = null,
       children = []
     } = req.body || {};
 
-    /* -------- INSERT PERSON -------- */
+    const fileName = req.file ? req.file.filename : null;
+    const childList = typeof children === "string" ? JSON.parse(children || "[]") : children;
 
-     if(!req.body.dob){
+    /* -------- VALIDATION -------- */
+    if (!fullName || !dob || !gender || !father || !mother || !grandfather || !grandmother || !village || !address || !phone) {
       return res.status(400).json({
-        message:"DOB is required",
-      })
+        message: "Please fill all required member fields.",
+      });
     }
 
+    /* -------- INSERT PERSON -------- */
     const query = `
       INSERT INTO persons
-      (fullName, wifename, dob, gender, father, mother, grandfather, grandmother,file, village, address, phone)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
+      (fullName, wifename, dob, gender, father, mother, grandfather, grandmother, file, village, address, phone)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     const [result] = await db.execute(query, [
@@ -41,11 +43,11 @@ const Addmember = async (req, res) => {
       father,
       mother,
       grandfather,
-      grandmother,
+      grandmother,  
+      fileName,
       village,
       address,
-      file,
-      phone
+      phone,
     ]);
 
     const personId = result.insertId;
@@ -53,9 +55,8 @@ const Addmember = async (req, res) => {
    
     /* -------- INSERT CHILDREN -------- */
 
-    if (children && children.length > 0) {
-      for (const child of children) {
-
+    if (childList && childList.length > 0) {
+      for (const child of childList) {
         const child_name = child.child_name || null;
         const child_gender = child.child_gender || null;
 
@@ -89,8 +90,9 @@ const Addmember = async (req, res) => {
       message: "Person added successfully",
       data: {
         ...person[0],
-        children: childlist
-      }
+        profile_pic: fileName ? `http://localhost:5000/uploads/${fileName}` : null,
+        children: childlist,
+      },
     });
 
   } catch (error) {

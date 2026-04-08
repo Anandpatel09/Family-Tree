@@ -14,6 +14,9 @@ app.use(express.json());
 
 app.use("/auth", Routes);
 
+// Serve static files from uploads directory
+app.use('/uploads', express.static('uploads'));
+
 const Port = process.env.PORT || 5000;
 
 app.listen(Port, () => console.log(`server is running on port ${Port}`));

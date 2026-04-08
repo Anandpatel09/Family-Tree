@@ -4,8 +4,6 @@
 const { findById } = require("../models/user.model");
 
 const getProfile = async (req, res) => {
-  console.log("USER FROM TOKEN:", req.user); //  clean debug
-
   try {
     const userId = req.user.id;
 
@@ -23,7 +21,16 @@ const getProfile = async (req, res) => {
       ...safeUser
     } = user;
 
-    res.json(safeUser);
+    const profilePicUrl = safeUser.profile_pic
+      ? safeUser.profile_pic.startsWith("http")
+        ? safeUser.profile_pic
+        : `http://localhost:5000/uploads/${safeUser.profile_pic}`
+      : null;
+
+    res.json({
+      ...safeUser,
+      image: profilePicUrl,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error fetching profile" });
