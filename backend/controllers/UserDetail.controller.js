@@ -1,6 +1,6 @@
 const db = require("../config/db");
 
- const getAllMembers = async (req, res) => {
+const getAllMembers = async (req, res) => {
   try {
     const [rows] = await db.execute(`
       SELECT 
@@ -23,20 +23,28 @@ const db = require("../config/db");
       GROUP BY p.id
     `);
 
-    // ✅ Convert children string → array + image URL
+    // Format response properly
     const formattedData = rows.map((item) => ({
-      ...item,
+      id: item.id,
+      fullName: item.fullName,
+      gender: item.gender,
+      father: item.father,
+      mother: item.mother,
+      grandfather: item.grandfather,
+      grandmother: item.grandmother,
+      phone: item.phone,
+      address: item.address,
+      village: item.village,
+      file: item.file,
+      profile_pic: item.file ? `http://localhost:5000/uploads/${item.file}` : null,
+      created_at: item.created_at,
       children: item.children ? item.children.split(",") : [],
-      profile_pic: item.profile_pic
-        ? `http://localhost:5000/uploads/${item.profile_pic}`
-        : null,
     }));
 
     res.json({
       success: true,
       data: formattedData,
     });
-
   } catch (error) {
     console.error(error);
     res.status(500).json({

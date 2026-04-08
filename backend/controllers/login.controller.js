@@ -45,6 +45,12 @@ const login = async (req, res) => {
     );
 
     //  Return success response (don't expose sensitive data)
+    const profilePicUrl = user.profile_pic
+      ? user.profile_pic.startsWith("http")
+        ? user.profile_pic
+        : `http://localhost:5000/uploads/${user.profile_pic}`
+      : null;
+
     return res.status(200).json({
       success: true,
       message: "Login successful",
@@ -54,7 +60,7 @@ const login = async (req, res) => {
         full_name: user.full_name,
         email: user.email,
         phone: user.phone,
-        profile_pic: user.profile_pic,
+        profile_pic: profilePicUrl,
       },
     });
 
