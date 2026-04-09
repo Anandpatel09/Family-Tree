@@ -55,10 +55,6 @@ family-tree/
 
 ### 1️⃣ Clone the repository
 
-```
-git clone https://github.com/your-username/family-tree.git
-cd family-tree
-```
 
 ### 2️⃣ Install dependencies
 
