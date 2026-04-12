@@ -2,7 +2,7 @@ import db from "../config/db.js";
 
 export const getDashboardStats = async (req, res) => {
   try {
-    // ✅ Stats (UPDATED: newThisMonth from persons)
+    //  Stats (UPDATED: newThisMonth from persons)
     const [stats] = await db.execute(`
       SELECT 
         (SELECT COUNT(*) FROM persons) AS totalFamilies,
@@ -16,7 +16,7 @@ export const getDashboardStats = async (req, res) => {
         ) AS newThisMonth
     `);
 
-    // ✅ Members Data
+    //  Members Data
     const [membersData] = await db.execute(`
       SELECT 
         p.id,
@@ -33,7 +33,7 @@ export const getDashboardStats = async (req, res) => {
       GROUP BY p.id
     `);
 
-    // ✅ Format children array
+    //  Format children array
     const formattedMembers = membersData.map((item) => ({
       ...item,
       children: item.children ? item.children.split(",") : [],
