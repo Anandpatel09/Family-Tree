@@ -12,9 +12,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { ROUTES } from "@/Routers/routes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
 
@@ -42,6 +44,10 @@ const formSchema = z
 type FormValues = z.infer<typeof formSchema>;
 
 const SignUp = () => {
+    const navigate = useNavigate();
+const handleLogin = () => {
+    navigate(ROUTES.LOGIN);
+  };
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -238,6 +244,11 @@ const SignUp = () => {
                 </Button>
               </form>
             </Form>
+            <Button  className="w-full mt-3"
+            onClick={handleLogin}>
+    
+                  Login
+                </Button>
           </CardContent>
         </Card>
       </div>
