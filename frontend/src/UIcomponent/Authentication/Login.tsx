@@ -110,7 +110,7 @@ const Login = () => {
           </CardContent>
           
           <CardFooter className="flex-col gap-2">        
-             <p className="text-blue-600 mr-6">don't have account signup ?</p>  
+             <p className="text-blue-600 mr-6">don't have account signup Click Singup button?</p>  
             <Button variant="outline" className="w-full" onClick={handleSinup}>
               Sign Up
             </Button>

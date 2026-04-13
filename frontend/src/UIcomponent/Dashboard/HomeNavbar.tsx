@@ -93,7 +93,7 @@ const HomeNavbar = () => {
               {/* HEADER */}
               <div className="p-5 border-b">
                 <h2 className="text-lg font-semibold text-gray-800">
-                  Welcome, {user?.full_name || 'Anand'} 👋
+                  Welcome, {user?.full_name || 'Anand'} 
                 </h2>
                 <p className="text-sm text-gray-500">
                   Manage your account
