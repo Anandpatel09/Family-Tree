@@ -6,7 +6,7 @@ The **Family Tree Project** is a web-based application that allows users to visu
 
 ---
 
-## 🚀 Features
+## Features
 
 * 👨‍👩‍👧 Add and manage family members
 * 🔗 Create relationships (parent, child, spouse, grandmother, grandfather)
