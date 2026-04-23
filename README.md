@@ -10,7 +10,7 @@ The **Family Tree Project** is a web-based application that allows users to visu
 
 * Add and manage family members
 * 🔗 Create relationships (parent, child, spouse, grandmother, grandfather)
-* 🌐 Interactive tree visualization
+* Interactive tree visualization
 * 🔍 Search family members
 * Store personal details (name, DOB, gender, etc.)
 * 📱 Responsive design (works on mobile & desktop)
