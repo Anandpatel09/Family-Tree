@@ -15,7 +15,7 @@ The **Family Tree Project** is a web-based application that allows users to visu
 * Store personal details (name, DOB, gender, etc.)
 * 📱 Responsive design (works on mobile & desktop)
 
----
+--
 
 ##  TechStack
 
