@@ -34,7 +34,7 @@ The **Family Tree Project** is a web-based application that allows users to visu
 
 * MySQL 
 
----
+--
 
 ## 📂 Project Structure
 
