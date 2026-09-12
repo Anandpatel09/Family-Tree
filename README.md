@@ -147,6 +147,3 @@ This project is licensed under the MIT License.
 * GitHub: https://github.com/Anandpatel09
 * LinkedIn: Your LinkedIn Profile
 
----
-
-⭐ If you like this project, don’t forget to star the repository.
